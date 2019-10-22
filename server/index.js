@@ -1,26 +1,33 @@
-const express = require('express');
-const app = express();
-const multer = require('multer');
+const express = require('express');//Express Web Server 
+const multer = require('multer');  //middleware for form/file upload and handeling multipart/form-data
 const cors = require('cors');
-const pino = require('express-pino-logger')();
-const bodyParser = require('body-parser');
+const path = require('path');     //used for file path
+const fs = require('fs-extra');       //File System - for file manipulation
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(pino);
+const port = process.env.PORT || 3001; 
+const app = express();
+
 
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
-        cb(null, 'public')
+        cb(null, 'public/uploads')
     },
     filename: function (req, file, cb){
         cb(null, file.originalname)
     }
+});
+
+const upload = multer({storage:storage}).single('file');
+
+
+app.get('/', function(req,res) {
+    return res.send("hello from my app express server!")
 })
 
-const upload = multer({storage:storage}).single('file')
-
+// '/upload' to handle the Form submission (handle POST requests to /upload)
 app.post('/upload', function(req,res){
     upload(req, res, function(err){
         if(err instanceof multer.MulterError) {
@@ -32,5 +39,13 @@ app.post('/upload', function(req,res){
     })
 })
 
-const port = process.env.PORT || 3001; 
+app.get('/fetch', (req, res) => {
+    const filesFolder = './public/uploads/';
+    fs.readdir(filesFolder, (err, files) => {
+        if (err) throw err;
+        res.send(files);
+        console.log(files)
+     });
+});
+
 app.listen(port, () => console.log(`Server is running on port ${port}!`));

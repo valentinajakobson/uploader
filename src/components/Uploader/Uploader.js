@@ -18,6 +18,9 @@ const MyGrid = styled(Grid)({
 
 const MyPaper = styled(Paper)({
     backgroundColor: '#4e4f52',
+    minHeight:'70vh',
+    padding:'25px',
+    color:'white'
   });
 
 const MyButton = styled(Button)({
@@ -25,26 +28,31 @@ const MyButton = styled(Button)({
     
   });
 
+
 class Uploader extends Component {
-    
-    onChangeHandler = event => {
-        this.setState({
-            selectedFile: event.target.files[0],
-            loaded:0,
-            percentage:0
-        })
-    }
-   
     constructor(props){
         super(props);
+
         this.state = {
-            selectedFile:null
-        }
+            selectedFile:null,
+            data:null,
+            files: [],
+        } 
     }
 
-    onClickHandler = () => {
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+
+  componentDidMount(){
+    this.updateUploadedList();
+    // fetch('http://localhost:3000')
+    // .then(res => res.json())
+    // .then(data => this.setState({ files: data.files }));
+  }
+    
+    onChangeHandler = (event) => {
         const data = new FormData()
-        data.append('file', this.state.selectedFile)
+        data.append('file', event.target.files[0])
         axios.post("/upload", data,{
             onUploadProgress: ProgressEvent => {
                 this.setState({
@@ -59,42 +67,50 @@ class Uploader extends Component {
    
         
     render() {
+
+        const { files } = this.state;
+
         return (
+            <div>
                 <MyGrid container spacing={5}>
                 <MyGrid item xs={6}>
                     <MyPaper>
-                    
                     <div className="file-field input-field">
-                        <div className="btn">
-                            <h4>Choose file and press Upload</h4>
-                        </div>
+                        <h4>Choose file and press Upload</h4>
                     </div>
-                   
-                    <input type="file" required name="file_upload" onChange={this.onChangeHandler} />
-                   
-                 
-            <MyButton
-            variant="contained"
-            color="default"
-            startIcon={<CloudUploadIcon />}
-            type="submit" 
-            onClick={this.onClickHandler}
-            >
-            Upload
-            </MyButton>
+                    <form>
+                    <input type="file" required name="file_upload" onChange={this.onChangeHandler} /> 
+                    <MyButton
+                        variant="contained"
+                        color="default"
+                        startIcon={<CloudUploadIcon />}
+                        type="submit" 
+                        onClick={this.onChangeHandler}
+                        >Upload
+                    </MyButton>
+                    </form>
                     <ProgressBar percentage={this.state.percentage} />
-                  
-                    </MyPaper>
+                  </MyPaper>
                 </MyGrid>
                 <MyGrid item xs={6}>
-                    <MyPaper>xs=6</MyPaper>
+                    <MyPaper>
+                    <div className="file-field input-field">
+                        <h4>Uploaded files</h4>
+                    </div>
+                    <ul>
+                        {files.map(file =>
+                           <li key={file.objectID}> 
+                           <a href={file.url}>{file.title}</a>
+                        </li>
+                        )}
+                    </ul>
+
+                    </MyPaper>
                 </MyGrid>
                 </MyGrid>
-             
+                </div>
         );
       }
     }
-    
- 
-  
+      
     export default Uploader;
