@@ -2,9 +2,9 @@ UI Component for uploading files.
 Created with React.js and Node.js
 
 To run the app:
-1. run ### `npm install` to install dependencies
-2. create an emplt .env file in a root directory 
-3. run ### `npm run dev` to start the app
+1. run `npm install` to install dependencies
+2. create an emplt .env file in a root digit rectory 
+3. run `npm run dev` to start the app
 
 
 
