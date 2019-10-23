@@ -21,7 +21,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh',
   },
   main: {
     marginTop: theme.spacing(8),
@@ -31,6 +30,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     marginTop: 'auto',
     backgroundColor: '#FF950A',
+    textAlign: 'center'
   },
 }));
 
@@ -42,7 +42,7 @@ export default function StickyFooter() {
     
       <footer className={classes.footer}>
         <Container maxWidth="sm">
-          <Typography variant="body1">Made by Valentina Jakobson</Typography>
+          <Typography variant="body1" className="name">Made by Valentina Jakobson</Typography>
           <Copyright />
         </Container>
       </footer>

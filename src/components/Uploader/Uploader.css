@@ -1,0 +1,22 @@
+#uploadFile {
+    visibility: hidden;
+}
+.icon:active {
+  box-shadow: 0 2px rgb(75, 69, 69);
+  transform: translateY(2px);
+}
+h4{
+    text-align: center;
+}
+form {
+    text-align: center;
+}
+ul {
+  list-style-type:none;
+}
+li {
+   color: #FF950A;
+}
+*, ::after, ::before {
+    box-sizing: none;
+}

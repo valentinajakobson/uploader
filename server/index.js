@@ -20,12 +20,13 @@ const storage = multer.diskStorage({
     }
 });
 
+
 const upload = multer({storage:storage}).single('file');
 
 
 app.get('/', function(req,res) {
     return res.send("hello from my app express server!")
-})
+});
 
 // '/upload' to handle the Form submission (handle POST requests to /upload)
 app.post('/upload', function(req,res){
@@ -37,15 +38,12 @@ app.post('/upload', function(req,res){
         }
         return res.status(200).send(req.file)
     })
-})
-
-app.get('/fetch', (req, res) => {
-    const filesFolder = './public/uploads/';
-    fs.readdir(filesFolder, (err, files) => {
-        if (err) throw err;
-        res.send(files);
-        console.log(files)
-     });
 });
+
+
+app.get("/fetch", (req, res) => {
+    let files = fs.readdirSync(path.resolve("public/uploads"));
+    res.send(files);
+    });
 
 app.listen(port, () => console.log(`Server is running on port ${port}!`));
