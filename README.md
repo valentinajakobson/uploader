@@ -1,7 +1,7 @@
-#UI Component for uploading files.
+# UI Component for uploading files.
 ##Created with React.js and Node.js
 
-##To run the app:
+## To run the app:
 1. Clone the repo and cd into the directory
 2. run `npm install` to install dependencies
 3. create an emplt .env file in a root digit rectory 
@@ -10,8 +10,7 @@
 6. Uploaded file can be found in 'public/uploads' folder
 
 
-
-##Used materials:
+## Used materials:
 1. https://programmingwithmosh.com/javascript/react-file-upload-proper-server-side-nodejs-easy/
 2. https://medium.com/quick-code/uploading-files-and-serve-directory-listing-using-nodejs-6f353f65be5
 3. https://www.robinwieruch.de/react-fetching-data

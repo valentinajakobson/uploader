@@ -25,7 +25,7 @@ const upload = multer({storage:storage}).single('file');
 
 
 app.get('/', function(req,res) {
-    return res.send("hello from my app express server!")
+    return res.send("hello server")
 });
 
 // '/upload' to handle the Form submission (handle POST requests to /upload)
@@ -41,7 +41,7 @@ app.post('/upload', function(req,res){
 });
 
 
-app.get("/fetch", (req, res) => {
+app.get('/fetch', (req, res) => {
     let files = fs.readdirSync(path.resolve("public/uploads"));
     res.send(files);
     });
