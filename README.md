@@ -1,5 +1,5 @@
 # UI Component for uploading files.
-## Created with React.js and Node.js
+### Created with React.js and Node.js
 
 ## To run the app:
 1. Clone the repo and cd into the directory
