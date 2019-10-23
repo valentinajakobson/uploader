@@ -18,7 +18,7 @@ const MyPaper = styled(Paper)({
     minHeight:'70vh',
     padding:'25px',
     color:'white',
-    margin:'25px'
+    margin:'25px',
   });
 
 const MyCloudUploadIcon = styled (CloudUploadIcon) ({
@@ -62,8 +62,8 @@ class Uploader extends Component {
     render() {
         const {data} = this.state;
         return (
-                <MyGrid container spacing={5}>
-                <MyGrid item xs={6}>
+                <MyGrid container spacing={3}>
+                <MyGrid item xs={12} sm={6}>
                     <MyPaper>
                         <div className="file-field input-field">
                             <div>
@@ -77,17 +77,18 @@ class Uploader extends Component {
                     </form>
                     </MyPaper>
                 </MyGrid>
-                <MyGrid item xs={6}>
+                <MyGrid item xs={12} sm={6}>
                     <MyPaper>
-                        <div className="file-field input-field">
+                        <div className="input-field">
                             <h4>Uploaded files</h4>
                         </div>
+                        <div>
                             <ul>
                                 {data.length && data.map((file, index) =>
                                 <li key={index}>{file}</li>
                                 )}
                             </ul>
-
+                        </div>
                     </MyPaper>
                 </MyGrid>
                 </MyGrid>

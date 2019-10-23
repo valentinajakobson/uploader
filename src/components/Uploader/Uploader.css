@@ -17,6 +17,6 @@ ul {
 li {
    color: #FF950A;
 }
-*, ::after, ::before {
-    box-sizing: none;
+.input-field{
+  margin-bottom:25px;
 }

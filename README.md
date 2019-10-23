@@ -7,7 +7,7 @@
 3. create an emplt .env file in a root digit rectory 
 4. run `npm run dev` to start it locally
 5. Use the interface (http://localhost:3000) to upload a file
-6. Uploaded file can be found in 'public/uploads' folder
+6. Uploaded file can be found in 'server/uploads' folder
 
 
 ## Used materials:
